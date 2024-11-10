@@ -5,7 +5,28 @@
     <title>Register</title>
 </head>
 <body>
-<h1>Welcome Home</h1>
-<p>This is the homepage, under construction...</p>
+
+<h1>Register User</h1>
+
+<form action="@/user/register" th:object="${user}" method="post">
+    <label>
+        Username:
+    <input type="text" name="username" placeholder="Username" th:field="*{username}">
+    </label>
+    <label>
+        Password:
+    <input type="password" name="password" placeholder="Password" th:field="*{password}">
+    </label>
+    <button type="submit">Register</button>
+
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul>
+            <li th:each="error : ${#fields.allErrors()}" th:text="${error}">
+
+            </li>
+        </ul>
+
+    </div>
+</form>
 </body>
 </html>
