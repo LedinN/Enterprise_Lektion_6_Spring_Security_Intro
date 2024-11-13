@@ -32,6 +32,7 @@ public class UserController {
     public String registerUser(Model model) {
 
         model.addAttribute("customUser", new CustomUser());
+        model.addAttribute("userRoles", UserRole.values());
 
         return "register";
     }
@@ -47,7 +48,7 @@ public class UserController {
                 new CustomUser(
                         customUser.getUsername(),
                         passwordEncoder.encode(customUser.getPassword()),
-                        UserRole.ADMIN,
+                        customUser.getUserRole(),
                         true,
                         true,
                         true,

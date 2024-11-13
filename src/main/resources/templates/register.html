@@ -20,6 +20,13 @@
         Password:
     <input type="password" name="password" th:field="*{password}">
     </label>
+    <label>
+        User Role
+        <select th:field="*{userRole}">
+            <option th:each="index : ${userRoles}" th:value="${index}" th:text="${index}"
+            >
+        </select>
+    </label>
     <button type="submit">Register</button>
 
     <div th:if="${#fields.hasAnyErrors()}">
