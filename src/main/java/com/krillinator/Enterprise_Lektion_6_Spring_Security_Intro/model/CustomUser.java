@@ -17,11 +17,11 @@ public class CustomUser {
     private Long id;
 
     @NotBlank
-    @Size(min = 4, max = 32, message = "Must be between 4 and 32 characters.")
+    @Size(min = 4, max = 32, message = "Username must be between 4 and 32 characters.")
     private String username;
 
     @NotBlank
-    @Size(min = 12, max = 64, message = "Must be between 12 and 64 characters.")
+    @Size(min = 12, max = 80, message = "Password must be between 12 and 64 characters.")
     private String password;
 
     @Enumerated(EnumType.STRING)

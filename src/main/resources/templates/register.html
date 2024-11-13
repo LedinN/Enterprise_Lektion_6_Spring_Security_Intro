@@ -8,14 +8,17 @@
 
 <h1>Register User</h1>
 
-<form action="@/user/register" th:object="${user}" method="post">
+<p> DEBUGGING: </p>
+<p th:object="${customUser}" th:text="${customUser}"></p>
+
+<form th:action="@{/user/register}" th:object="${customUser}" method="post">
     <label>
         Username:
-    <input type="text" name="username" placeholder="Username" th:field="*{username}">
+    <input type="text" name="username" th:field="*{username}">
     </label>
     <label>
         Password:
-    <input type="password" name="password" placeholder="Password" th:field="*{password}">
+    <input type="password" name="password" th:field="*{password}">
     </label>
     <button type="submit">Register</button>
 

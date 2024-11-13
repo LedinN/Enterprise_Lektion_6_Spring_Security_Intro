@@ -6,6 +6,7 @@ import com.krillinator.Enterprise_Lektion_6_Spring_Security_Intro.repository.Use
 import jakarta.validation.Valid;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,16 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/register")
     public String registerUser(Model model) {
 
-        model.addAttribute("user", new CustomUser());
+        model.addAttribute("customUser", new CustomUser());
 
         return "register";
     }
@@ -43,8 +46,8 @@ public class UserController {
         userRepository.save(
                 new CustomUser(
                         customUser.getUsername(),
-                        customUser.getPassword(),
-                        UserRole.USER,
+                        passwordEncoder.encode(customUser.getPassword()),
+                        UserRole.ADMIN,
                         true,
                         true,
                         true,

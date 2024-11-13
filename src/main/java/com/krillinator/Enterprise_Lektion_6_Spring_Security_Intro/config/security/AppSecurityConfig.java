@@ -34,10 +34,10 @@ public class AppSecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login","/user/**").permitAll()
+                        .requestMatchers("/", "/login","/user/register").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE,"/api/**").hasAuthority(UserPermission.DELETE.getPermission())
-                        // .requestMatchers("/admin").hasRole(UserRole.ADMIN.name())
+                        .requestMatchers("/admin").hasRole(UserRole.ADMIN.name())
                         .requestMatchers("/user").hasRole(UserRole.USER.name())
                         .requestMatchers("/admin").hasAuthority(UserPermission.DELETE.getPermission()) // TODO ROLE_ not necessary here?
                         .anyRequest().authenticated()
