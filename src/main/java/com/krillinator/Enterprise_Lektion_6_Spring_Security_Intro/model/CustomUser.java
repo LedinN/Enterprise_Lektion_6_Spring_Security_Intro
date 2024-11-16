@@ -21,7 +21,7 @@ public class CustomUser {
     private String username;
 
     @NotBlank
-    @Size(min = 12, max = 80, message = "Password must be between 12 and 64 characters.")
+    @Size(min = 7, max = 120, message = "Password must be between 7 and 120 characters.")
     private String password;
 
     @Enumerated(EnumType.STRING)

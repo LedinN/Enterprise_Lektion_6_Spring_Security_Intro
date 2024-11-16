@@ -38,7 +38,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid CustomUser customUser, BindingResult bindingResult) {
+    public String registerUser(@Valid @ModelAttribute(name = "customUser") CustomUser customUser,
+                               BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "register";
@@ -56,7 +57,7 @@ public class UserController {
                 )
         );
 
-        return "redirect:/login";
+        return "redirect:/";
     }
 
 
